@@ -9,9 +9,18 @@
 import UIKit
 import iOSDropDown
 
+protocol LoginViewControllerProtocol: class {
+    var presenter: LoginViewPresenterProtocol? { get set }
+}
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var phoneCodeSignUp: DropDown!
+    @IBOutlet weak var phoneCodeLogin: DropDown!
+    @IBOutlet weak var loginArrowImage: UIImageView!
+    @IBOutlet weak var signupArrowImage: UIImageView!
+    @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var signupView: UIView!
     
     var presenter: LoginViewPresenterProtocol?
     
@@ -23,6 +32,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.setupDropDown(phoneCodeSignUp)
+        self.setupDropDown(phoneCodeLogin)
     }
     
     func setupPresenter() {
@@ -35,7 +45,29 @@ class LoginViewController: UIViewController {
         dropDown.arrowColor = .clear
         dropDown.selectedRowColor = .clear
     }
-
-
+    @IBAction func LoginDidTouchUpInside(_ sender: Any) {
+        self.shouldShowLogin(true)
+    }
+    
+    @IBAction func signUpDidTouchUpInside(_ sender: Any) {
+        self.shouldShowLogin(false)
+    }
+    @IBAction func loginButtonDidTouchUpInside(_ sender: Any) {
+        self.presenter.
+    }
+    @IBAction func signupButtonDidTouchUpInside(_ sender: Any) {
+    }
 }
 
+extension LoginViewController: LoginViewControllerProtocol {
+    
+}
+
+extension LoginViewController {
+    private func shouldShowLogin(_ shouldShow: Bool) {
+        self.loginArrowImage.isHidden = !shouldShow
+        self.loginView.isHidden = !shouldShow
+        self.signupView.isHidden = shouldShow
+        self.signupView.isHidden = shouldShow
+    }
+}

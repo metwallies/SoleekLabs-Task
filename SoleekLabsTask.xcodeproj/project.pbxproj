@@ -81,6 +81,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DF6889CF230A4652004FCA23 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DFBD942E230A1983002FBD7E /* LoginViewController.swift */,
+				DF6889CB230A2E61004FCA23 /* LoginViewPresenter.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		DFBD9420230A1983002FBD7E = {
 			isa = PBXGroup;
 			children = (
@@ -105,8 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				DFBD942C230A1983002FBD7E /* AppDelegate.swift */,
-				DFBD942E230A1983002FBD7E /* LoginViewController.swift */,
-				DF6889CB230A2E61004FCA23 /* LoginViewPresenter.swift */,
+				DF6889CF230A4652004FCA23 /* Login */,
 				DFBD9430230A1983002FBD7E /* Main.storyboard */,
 				DFBD9433230A1986002FBD7E /* Assets.xcassets */,
 				DFBD9435230A1986002FBD7E /* LaunchScreen.storyboard */,
