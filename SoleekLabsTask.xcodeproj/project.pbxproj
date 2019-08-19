@@ -23,6 +23,12 @@
 		DFD36626230ACC2300BA4ECB /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD36625230ACC2300BA4ECB /* SideMenuTableViewCell.swift */; };
 		DFD36628230AD2D700BA4ECB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD36627230AD2D700BA4ECB /* Constants.swift */; };
 		DFD3662B230AD38300BA4ECB /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3662A230AD38300BA4ECB /* DetailsViewController.swift */; };
+		DFD3662F230AD4C500BA4ECB /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3662E230AD4C500BA4ECB /* DetailsPresenter.swift */; };
+		DFD36633230AD82900BA4ECB /* ProductOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD36632230AD82900BA4ECB /* ProductOperation.swift */; };
+		DFD36635230AE38800BA4ECB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD36634230AE38800BA4ECB /* Product.swift */; };
+		DFD36639230B087300BA4ECB /* SimilarProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD36638230B087300BA4ECB /* SimilarProductsCollectionViewCell.swift */; };
+		DFD3663B230B0B5700BA4ECB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3663A230B0B5700BA4ECB /* UIView+Extension.swift */; };
+		DFD3663D230B0BFD00BA4ECB /* DetailsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3663C230B0BFD00BA4ECB /* DetailsViewController+CollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +65,12 @@
 		DFD36625230ACC2300BA4ECB /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		DFD36627230AD2D700BA4ECB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DFD3662A230AD38300BA4ECB /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		DFD3662E230AD4C500BA4ECB /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
+		DFD36632230AD82900BA4ECB /* ProductOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductOperation.swift; sourceTree = "<group>"; };
+		DFD36634230AE38800BA4ECB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		DFD36638230B087300BA4ECB /* SimilarProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarProductsCollectionViewCell.swift; sourceTree = "<group>"; };
+		DFD3663A230B0B5700BA4ECB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		DFD3663C230B0BFD00BA4ECB /* DetailsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		FE35EA1B49AC1F6845802421 /* Pods_SoleekLabsTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoleekLabsTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,13 +139,15 @@
 			children = (
 				DFBD942C230A1983002FBD7E /* AppDelegate.swift */,
 				DFD36627230AD2D700BA4ECB /* Constants.swift */,
-				DFD3662A230AD38300BA4ECB /* DetailsViewController.swift */,
+				DFD36637230AFBD300BA4ECB /* product */,
+				DFD36636230AFBBC00BA4ECB /* Details */,
 				DFD36629230AD35D00BA4ECB /* SideMenu */,
 				DF6889CF230A4652004FCA23 /* Login */,
 				DFBD9430230A1983002FBD7E /* Main.storyboard */,
 				DFBD9435230A1986002FBD7E /* LaunchScreen.storyboard */,
 				DF6889D0230AB97F004FCA23 /* Assets.xcassets */,
 				DFBD9438230A1986002FBD7E /* Info.plist */,
+				DFD3663A230B0B5700BA4ECB /* UIView+Extension.swift */,
 			);
 			path = SoleekLabsTask;
 			sourceTree = "<group>";
@@ -156,6 +170,26 @@
 				DFD36623230ACA2000BA4ECB /* SideMenuViewControllerPresenter.swift */,
 			);
 			name = SideMenu;
+			sourceTree = "<group>";
+		};
+		DFD36636230AFBBC00BA4ECB /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				DFD3662A230AD38300BA4ECB /* DetailsViewController.swift */,
+				DFD3663C230B0BFD00BA4ECB /* DetailsViewController+CollectionView.swift */,
+				DFD3662E230AD4C500BA4ECB /* DetailsPresenter.swift */,
+				DFD36638230B087300BA4ECB /* SimilarProductsCollectionViewCell.swift */,
+			);
+			name = Details;
+			sourceTree = "<group>";
+		};
+		DFD36637230AFBD300BA4ECB /* product */ = {
+			isa = PBXGroup;
+			children = (
+				DFD36632230AD82900BA4ECB /* ProductOperation.swift */,
+				DFD36634230AE38800BA4ECB /* Product.swift */,
+			);
+			name = product;
 			sourceTree = "<group>";
 		};
 		FA847288F1498668F4243A5A /* Pods */ = {
@@ -278,12 +312,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoleekLabsTask/Pods-SoleekLabsTask-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDropDown.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,13 +378,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFD3663D230B0BFD00BA4ECB /* DetailsViewController+CollectionView.swift in Sources */,
 				DFD36620230AC2CD00BA4ECB /* SideMenuViewController.swift in Sources */,
 				DF6889CC230A2E61004FCA23 /* LoginViewPresenter.swift in Sources */,
 				DFD3662B230AD38300BA4ECB /* DetailsViewController.swift in Sources */,
+				DFD36633230AD82900BA4ECB /* ProductOperation.swift in Sources */,
 				DFBD942F230A1983002FBD7E /* LoginViewController.swift in Sources */,
+				DFD36635230AE38800BA4ECB /* Product.swift in Sources */,
 				DFD36624230ACA2000BA4ECB /* SideMenuViewControllerPresenter.swift in Sources */,
 				DFD36626230ACC2300BA4ECB /* SideMenuTableViewCell.swift in Sources */,
+				DFD3663B230B0B5700BA4ECB /* UIView+Extension.swift in Sources */,
 				DFBD942D230A1983002FBD7E /* AppDelegate.swift in Sources */,
+				DFD36639230B087300BA4ECB /* SimilarProductsCollectionViewCell.swift in Sources */,
+				DFD3662F230AD4C500BA4ECB /* DetailsPresenter.swift in Sources */,
 				DFD36622230AC9EC00BA4ECB /* SideMenuViewController+TableView.swift in Sources */,
 				DFD36628230AD2D700BA4ECB /* Constants.swift in Sources */,
 			);

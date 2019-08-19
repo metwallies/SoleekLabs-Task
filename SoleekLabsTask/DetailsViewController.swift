@@ -7,17 +7,103 @@
 //
 
 import UIKit
+import Kingfisher
 
-protocol DetailsViewControllerProtocol {
+protocol DetailsViewControllerProtocol: class {
+    var presenter: DetailsPresenterProtocol? { get set }
     
+    func didFetchProduct(_ product: Product)
+    func didFailFetchProduct(_ error: String)
+    func updateCell(at index: IndexPath, product: Product)
+    func didAddSimilarProduct(_ index: IndexPath)
 }
 
 class DetailsViewController: UIViewController {
 
+    var presenter: DetailsPresenterProtocol?
+    @IBOutlet weak var productImageView: UIImageView!
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productCategory: UILabel!
+    @IBOutlet weak var productPrice: UILabel!
+    @IBOutlet weak var localDescription: UILabel!
+    @IBOutlet weak var itemCountLabel: UILabel!
+    @IBOutlet weak var similarProductsCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setupPresenter()
+        self.presenter?.fetchProductDetails()
     }
     
+    func setupPresenter() {
+        self.presenter = DetailsPresenter()
+        self.presenter?.view = self
+    }
+    @IBAction func removeItemDidTouchUpInside(_ sender: Any) {
+        self.presenter?.product.itemCount -= 1
+        self.itemCountLabel.text = "\(self.presenter?.product.itemCount ?? 0)"
+    }
+    @IBAction func addItemDidTouchUpInside(_ sender: Any) {
+        self.presenter?.product.itemCount += 1
+        let imageView = UIImageView()
+        imageView.image = self.productImageView.image
+        imageView.frame = self.productImageView.frame
+        
+        var identity = CGAffineTransform.identity
+        identity = identity.translatedBy(x: 0, y: 400)
+        identity = identity.scaledBy(x: 0.25, y: 0.25)
+        
+        self.view.addSubview(imageView)
+        UIView.animate(withDuration: 0.5, animations: {
+            imageView.transform = identity
+        }) { (completed) in
+            if completed {
+                imageView.removeFromSuperview()
+            }
+        }
+        self.itemCountLabel.text = "\(self.presenter?.product.itemCount ?? 0)"
+    }
+    
+}
+
+extension DetailsViewController: DetailsViewControllerProtocol {
+    func didFetchProduct(_ product: Product) {
+        self.productName.text = product.name
+        self.productCategory.text = product.category.name + " > " + (product.category.subCategory?.name ?? "")
+        self.productPrice.text = "\(product.price - product.discountPrice) LE"
+        self.localDescription.text = product.localDescription
+        self.productImageView.kf.setImage(with: product.imageURL)
+        self.setupCollectionView()
+    }
+    
+    func didFailFetchProduct(_ error: String) {
+        
+    }
+    
+    func updateCell(at index: IndexPath, product: Product) {
+        if let cell = similarProductsCollectionView.cellForItem(at: index) as? SimilarProductsCollectionViewCell{
+            cell.configureCell(product, indexPath: index)
+        }
+    }
+    
+    func didAddSimilarProduct(_ index: IndexPath) {
+        if let cell = self.similarProductsCollectionView.cellForItem(at: index) as? SimilarProductsCollectionViewCell{
+            let frame = self.view.convert(cell.frame, from:self.similarProductsCollectionView)
+            let imageView = ImageView()
+            imageView.frame = frame
+            imageView.image = cell.productImageView.image
+            
+            var identity = CGAffineTransform.identity
+            identity = identity.translatedBy(x: 0, y: 100)
+            identity = identity.scaledBy(x: 0.25, y: 0.25)
+            
+            self.view.addSubview(imageView)
+            UIView.animate(withDuration: 0.3, animations: {
+                imageView.transform = identity
+            }) { (completed) in
+                if completed {
+                    imageView.removeFromSuperview()
+                }
+            }
+        }
+    }
 }
