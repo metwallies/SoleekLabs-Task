@@ -53,9 +53,10 @@ class LoginViewController: UIViewController {
         self.shouldShowLogin(false)
     }
     @IBAction func loginButtonDidTouchUpInside(_ sender: Any) {
-        self.presenter.
+        self.presenter?.navigateToProductDetails()
     }
     @IBAction func signupButtonDidTouchUpInside(_ sender: Any) {
+        self.presenter?.navigateToProductDetails()
     }
 }
 
