@@ -60,6 +60,9 @@ extension SideMenuViewController: SideMenuViewContollerProtocol {
             ordersContainer.isHidden = false
         case 2:
             detailsContainer.isHidden = false
+        case 3:
+            let appDelegate = UIApplication.shared.delegate
+            appDelegate?.window??.rootViewController = self.storyboard?.instantiateInitialViewController()
         default:
             homeContainer.isHidden = false
         }

@@ -21,10 +21,10 @@ class SideMenuPresenter: SideMenuPresenterProtocol {
     
     weak var view: SideMenuViewContollerProtocol?
     var selectedIndex: IndexPath = IndexPath(row: 0, section: 0)
-    var titles: [String] = ["Home", "Orders", "Details"]
+    var titles: [String] = ["Home", "Orders", "Details", "Logout"]
     
     func getNumberOfRows() -> Int {
-        return 3
+        return 4
     }
     
     func getSelectedIndex() -> IndexPath {
