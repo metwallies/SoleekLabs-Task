@@ -28,6 +28,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var localDescription: UILabel!
     @IBOutlet weak var itemCountLabel: UILabel!
     @IBOutlet weak var similarProductsCollectionView: UICollectionView!
+    @IBOutlet weak var containerScrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPresenter()
@@ -47,12 +49,13 @@ class DetailsViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = self.productImageView.image
         imageView.frame = self.productImageView.frame
+        imageView.contentMode = self.productImageView.contentMode
         
         var identity = CGAffineTransform.identity
-        identity = identity.translatedBy(x: 0, y: 400)
+        identity = identity.translatedBy(x: 0, y: self.view.frame.height)
         identity = identity.scaledBy(x: 0.25, y: 0.25)
         
-        self.view.addSubview(imageView)
+        self.containerScrollView.addSubview(imageView)
         UIView.animate(withDuration: 0.5, animations: {
             imageView.transform = identity
         }) { (completed) in
@@ -76,11 +79,18 @@ extension DetailsViewController: DetailsViewControllerProtocol {
     }
     
     func didFailFetchProduct(_ error: String) {
-        
+        let alert = UIAlertController(title: "Alert!", message: error, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let retry = UIAlertAction(title: "Retry", style: .default) { (_) in
+            self.presenter?.fetchProductDetails()
+        }
+        alert.addAction(cancel)
+        alert.addAction(retry)
+        self.showDetailViewController(alert, sender: self)
     }
     
     func updateCell(at index: IndexPath, product: Product) {
-        if let cell = similarProductsCollectionView.cellForItem(at: index) as? SimilarProductsCollectionViewCell{
+        if let cell = similarProductsCollectionView.cellForItem(at: index) as? SimilarProductsCollectionViewCell {
             cell.configureCell(product, indexPath: index)
         }
     }
@@ -93,7 +103,7 @@ extension DetailsViewController: DetailsViewControllerProtocol {
             imageView.image = cell.productImageView.image
             
             var identity = CGAffineTransform.identity
-            identity = identity.translatedBy(x: 0, y: 100)
+            identity = identity.translatedBy(x: 0, y: 150)
             identity = identity.scaledBy(x: 0.25, y: 0.25)
             
             self.view.addSubview(imageView)

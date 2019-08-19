@@ -531,7 +531,7 @@
                                     <segue destination="QUE-1u-HuX" kind="embed" id="AuK-Tt-7Mb"/>
                                 </connections>
                             </containerView>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPs-r7-e6q">
+                            <containerView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPs-r7-e6q">
                                 <rect key="frame" x="0.0" y="44" width="375" height="684"/>
                                 <connections>
                                     <segue destination="FFq-0A-rHu" kind="embed" id="K5e-oO-zxo"/>
@@ -578,7 +578,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVe-h1-dBw">
-                                                    <rect key="frame" x="15" y="11.333333333333336" width="345" height="21"/>
+                                                    <rect key="frame" x="15" y="11.666666666666664" width="345" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -962,6 +962,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="containerScrollView" destination="Pri-er-l0o" id="nn9-dF-YUa"/>
                         <outlet property="itemCountLabel" destination="BLF-mp-cKv" id="OJk-Qu-MS7"/>
                         <outlet property="localDescription" destination="HYw-6I-Pfu" id="Ucl-jV-lq7"/>
                         <outlet property="productCategory" destination="Y6N-Po-hPw" id="cit-8d-y9b"/>

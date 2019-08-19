@@ -20,13 +20,14 @@ protocol DetailsPresenterProtocol {
 class DetailsPresenter: DetailsPresenterProtocol {
     
     weak var view: DetailsViewControllerProtocol?
-    let productOperation = ProductOperation()
+    
     var observerIndex: Int = -1
     var product: Product!
+    let operationQueue: OperationQueue = OperationQueue()
     
     func fetchProductDetails() {
         
-        let operationQueue: OperationQueue = OperationQueue()
+        let productOperation = ProductOperation()
         self.observerIndex = productOperation.addObserver(self)
         operationQueue.addOperation(productOperation)
     }
@@ -42,18 +43,18 @@ class DetailsPresenter: DetailsPresenterProtocol {
 
 extension DetailsPresenter:ProductOpertionDelegate {
     
-    func didFetchDetails(_ product: Product) {
+    func didFetchDetails(_ product: Product, productOperation: ProductOperation) {
         self.product = product
         DispatchQueue.main.async {
             self.view?.didFetchProduct(product)
-            self.productOperation.removeObserver(at: self.observerIndex)
+            productOperation.removeObserver(at: self.observerIndex)
         }
     }
     
-    func didFailFetchDetails(_ error: String) {
+    func didFailFetchDetails(_ error: String, productOperation: ProductOperation) {
         DispatchQueue.main.async {
             self.view?.didFailFetchProduct(error)
-            self.productOperation.removeObserver(at: self.observerIndex)
+            productOperation.removeObserver(at: self.observerIndex)
         }
     }
 }

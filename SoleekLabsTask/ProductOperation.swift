@@ -9,8 +9,8 @@
 import Foundation
 
 protocol ProductOpertionDelegate {
-    func didFetchDetails(_ product: Product)
-    func didFailFetchDetails(_ error: String)
+    func didFetchDetails(_ product: Product, productOperation: ProductOperation)
+    func didFailFetchDetails(_ error: String, productOperation: ProductOperation)
 }
 
 class ProductOperation: Operation {
@@ -40,7 +40,7 @@ class ProductOperation: Operation {
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, res, error) in
             if let error = error {
                 for observer in self.observers {
-                    observer.didFailFetchDetails(error.localizedDescription)
+                    observer.didFailFetchDetails(error.localizedDescription, productOperation: self)
                 }
             } else {
                 if let data = data {
@@ -53,14 +53,14 @@ class ProductOperation: Operation {
                             return
                         }
                         for observer in self.observers {
-                            observer.didFetchDetails(product)
+                            observer.didFetchDetails(product, productOperation: self)
                         }
                     } catch let error {
                         if self.isCancelled {
                             return
                         }
                         for observer in self.observers {
-                            observer.didFailFetchDetails(error.localizedDescription)
+                            observer.didFailFetchDetails(error.localizedDescription, productOperation: self)
                         }
                     }
                 }
