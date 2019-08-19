@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LoginViewPresenterProtocol {
     var view: LoginViewControllerProtocol? { get set }
@@ -24,8 +25,11 @@ class LoginViewPresenter: LoginViewPresenterProtocol {
     }
     
     func navigateToProductDetails() {
-        if let view = view as? LoginViewController {
-//            view.navigationController?.show(<#T##vc: UIViewController##UIViewController#>, sender: <#T##Any?#>)
+        if let view = self.view as? LoginViewController {
+            let appDelegate = UIApplication.shared.delegate
+            let sideMenuVC = view.storyboard?.instantiateViewController(withIdentifier: "sideMenu")
+            appDelegate?.window??.rootViewController = sideMenuVC
         }
+        
     }
 }

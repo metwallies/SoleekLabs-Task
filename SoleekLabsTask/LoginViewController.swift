@@ -29,10 +29,15 @@ class LoginViewController: UIViewController {
         self.setupPresenter()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.setupDropDown(phoneCodeSignUp)
         self.setupDropDown(phoneCodeLogin)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func setupPresenter() {
@@ -68,7 +73,7 @@ extension LoginViewController {
     private func shouldShowLogin(_ shouldShow: Bool) {
         self.loginArrowImage.isHidden = !shouldShow
         self.loginView.isHidden = !shouldShow
-        self.signupView.isHidden = shouldShow
+        self.signupArrowImage.isHidden = shouldShow
         self.signupView.isHidden = shouldShow
     }
 }
